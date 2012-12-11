@@ -7,14 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6419E10B166F794400B79024 /* WeatherFlowMapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6419E109166F794400B79024 /* WeatherFlowMapView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6419E10C166F794400B79024 /* WeatherFlowMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6419E10A166F794400B79024 /* WeatherFlowMapView.m */; };
+		6419E115166F86CB00B79024 /* MKMapView+ZoomLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6419E113166F86CB00B79024 /* MKMapView+ZoomLevel.h */; };
+		6419E116166F86CB00B79024 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6419E114166F86CB00B79024 /* MKMapView+ZoomLevel.m */; };
+		6419E121166F9C9000B79024 /* WeatherFlowMapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6419E11F166F9C9000B79024 /* WeatherFlowMapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6419E122166F9C9000B79024 /* WeatherFlowMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6419E120166F9C9000B79024 /* WeatherFlowMapViewController.m */; };
 		64243844166D51EF0093F7C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64243842166D51EF0093F7C9 /* InfoPlist.strings */; };
+		6424385B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h */; };
+		6424385C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424384C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m */; };
+		6424385D166D51FE0093F7C9 /* Profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384D166D51FE0093F7C9 /* Profile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6424385E166D51FE0093F7C9 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424384E166D51FE0093F7C9 /* Profile.m */; };
+		6424385F166D51FE0093F7C9 /* Session.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384F166D51FE0093F7C9 /* Session.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243860166D51FE0093F7C9 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243850166D51FE0093F7C9 /* Session.m */; };
+		64243861166D51FE0093F7C9 /* Spot.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243851166D51FE0093F7C9 /* Spot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243862166D51FE0093F7C9 /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243852166D51FE0093F7C9 /* Spot.m */; };
+		64243863166D51FE0093F7C9 /* SpotSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243853166D51FE0093F7C9 /* SpotSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243864166D51FE0093F7C9 /* SpotSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243854166D51FE0093F7C9 /* SpotSet.m */; };
+		64243865166D51FE0093F7C9 /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243855166D51FE0093F7C9 /* Status.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243866166D51FE0093F7C9 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243856166D51FE0093F7C9 /* Status.m */; };
+		64243867166D51FE0093F7C9 /* User.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243857166D51FE0093F7C9 /* User.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243868166D51FE0093F7C9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243858166D51FE0093F7C9 /* User.m */; };
+		64243869166D51FE0093F7C9 /* WeatherFlowApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243859166D51FE0093F7C9 /* WeatherFlowApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6424386A166D51FE0093F7C9 /* WeatherFlowApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424385A166D51FE0093F7C9 /* WeatherFlowApi.m */; };
+		64243875166D557C0093F7C9 /* ModelData.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243873166D557C0093F7C9 /* ModelData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64243876166D557C0093F7C9 /* ModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243874166D557C0093F7C9 /* ModelData.m */; };
+		64243879166D558B0093F7C9 /* ModelDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243877166D558B0093F7C9 /* ModelDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6424387A166D558B0093F7C9 /* ModelDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243878166D558B0093F7C9 /* ModelDataSet.m */; };
+		645052381675E0FA00C8ECFF /* mapnowind.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052321675E0FA00C8ECFF /* mapnowind.png */; };
+		645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052331675E0FA00C8ECFF /* mapnowind@2x.png */; };
+		6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052341675E0FA00C8ECFF /* mapnowindinfo.png */; };
+		6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */; };
+		6450523C1675E0FA00C8ECFF /* mapwindarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052361675E0FA00C8ECFF /* mapwindarrow.png */; };
+		6450523D1675E0FA00C8ECFF /* mapwindarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6419E109166F794400B79024 /* WeatherFlowMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherFlowMapView.h; sourceTree = "<group>"; };
+		6419E10A166F794400B79024 /* WeatherFlowMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherFlowMapView.m; sourceTree = "<group>"; };
+		6419E113166F86CB00B79024 /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		6419E114166F86CB00B79024 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		6419E11F166F9C9000B79024 /* WeatherFlowMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherFlowMapViewController.h; sourceTree = "<group>"; };
+		6419E120166F9C9000B79024 /* WeatherFlowMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherFlowMapViewController.m; sourceTree = "<group>"; };
 		6424383D166D51EF0093F7C9 /* WeatherFlowApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherFlowApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64243841166D51EF0093F7C9 /* WeatherFlowApi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeatherFlowApi-Info.plist"; sourceTree = "<group>"; };
 		64243843166D51EF0093F7C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64243845166D51EF0093F7C9 /* WeatherFlowApi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherFlowApi-Prefix.pch"; sourceTree = "<group>"; };
+		6424384B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+WeatherFlowApiAdditions.h"; sourceTree = "<group>"; };
+		6424384C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+WeatherFlowApiAdditions.m"; sourceTree = "<group>"; };
+		6424384D166D51FE0093F7C9 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		6424384E166D51FE0093F7C9 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		6424384F166D51FE0093F7C9 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		64243850166D51FE0093F7C9 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		64243851166D51FE0093F7C9 /* Spot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot.h; sourceTree = "<group>"; };
+		64243852166D51FE0093F7C9 /* Spot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot.m; sourceTree = "<group>"; };
+		64243853166D51FE0093F7C9 /* SpotSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotSet.h; sourceTree = "<group>"; };
+		64243854166D51FE0093F7C9 /* SpotSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotSet.m; sourceTree = "<group>"; };
+		64243855166D51FE0093F7C9 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		64243856166D51FE0093F7C9 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		64243857166D51FE0093F7C9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		64243858166D51FE0093F7C9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		64243859166D51FE0093F7C9 /* WeatherFlowApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherFlowApi.h; sourceTree = "<group>"; };
+		6424385A166D51FE0093F7C9 /* WeatherFlowApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherFlowApi.m; sourceTree = "<group>"; };
+		64243873166D557C0093F7C9 /* ModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelData.h; sourceTree = "<group>"; };
+		64243874166D557C0093F7C9 /* ModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelData.m; sourceTree = "<group>"; };
+		64243877166D558B0093F7C9 /* ModelDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDataSet.h; sourceTree = "<group>"; };
+		64243878166D558B0093F7C9 /* ModelDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDataSet.m; sourceTree = "<group>"; };
+		645052321675E0FA00C8ECFF /* mapnowind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapnowind.png; sourceTree = "<group>"; };
+		645052331675E0FA00C8ECFF /* mapnowind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowind@2x.png"; sourceTree = "<group>"; };
+		645052341675E0FA00C8ECFF /* mapnowindinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapnowindinfo.png; sourceTree = "<group>"; };
+		645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowindinfo@2x.png"; sourceTree = "<group>"; };
+		645052361675E0FA00C8ECFF /* mapwindarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapwindarrow.png; sourceTree = "<group>"; };
+		645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapwindarrow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +111,32 @@
 		6424383F166D51EF0093F7C9 /* WeatherFlowApi */ = {
 			isa = PBXGroup;
 			children = (
+				64243859166D51FE0093F7C9 /* WeatherFlowApi.h */,
+				6424385A166D51FE0093F7C9 /* WeatherFlowApi.m */,
+				6424384B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h */,
+				6424384C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m */,
+				6424384D166D51FE0093F7C9 /* Profile.h */,
+				6424384E166D51FE0093F7C9 /* Profile.m */,
+				6424384F166D51FE0093F7C9 /* Session.h */,
+				64243850166D51FE0093F7C9 /* Session.m */,
+				64243851166D51FE0093F7C9 /* Spot.h */,
+				64243852166D51FE0093F7C9 /* Spot.m */,
+				64243853166D51FE0093F7C9 /* SpotSet.h */,
+				64243854166D51FE0093F7C9 /* SpotSet.m */,
+				64243855166D51FE0093F7C9 /* Status.h */,
+				64243856166D51FE0093F7C9 /* Status.m */,
+				64243857166D51FE0093F7C9 /* User.h */,
+				64243858166D51FE0093F7C9 /* User.m */,
+				64243873166D557C0093F7C9 /* ModelData.h */,
+				64243874166D557C0093F7C9 /* ModelData.m */,
+				64243877166D558B0093F7C9 /* ModelDataSet.h */,
+				64243878166D558B0093F7C9 /* ModelDataSet.m */,
+				6419E109166F794400B79024 /* WeatherFlowMapView.h */,
+				6419E10A166F794400B79024 /* WeatherFlowMapView.m */,
+				6419E11F166F9C9000B79024 /* WeatherFlowMapViewController.h */,
+				6419E120166F9C9000B79024 /* WeatherFlowMapViewController.m */,
+				6419E113166F86CB00B79024 /* MKMapView+ZoomLevel.h */,
+				6419E114166F86CB00B79024 /* MKMapView+ZoomLevel.m */,
 				64243840166D51EF0093F7C9 /* Supporting Files */,
 			);
 			path = WeatherFlowApi;
@@ -55,6 +145,12 @@
 		64243840166D51EF0093F7C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				645052321675E0FA00C8ECFF /* mapnowind.png */,
+				645052331675E0FA00C8ECFF /* mapnowind@2x.png */,
+				645052341675E0FA00C8ECFF /* mapnowindinfo.png */,
+				645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */,
+				645052361675E0FA00C8ECFF /* mapwindarrow.png */,
+				645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */,
 				64243841166D51EF0093F7C9 /* WeatherFlowApi-Info.plist */,
 				64243842166D51EF0093F7C9 /* InfoPlist.strings */,
 				64243845166D51EF0093F7C9 /* WeatherFlowApi-Prefix.pch */,
@@ -69,6 +165,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6424385D166D51FE0093F7C9 /* Profile.h in Headers */,
+				6424385F166D51FE0093F7C9 /* Session.h in Headers */,
+				64243861166D51FE0093F7C9 /* Spot.h in Headers */,
+				64243863166D51FE0093F7C9 /* SpotSet.h in Headers */,
+				64243865166D51FE0093F7C9 /* Status.h in Headers */,
+				64243867166D51FE0093F7C9 /* User.h in Headers */,
+				64243869166D51FE0093F7C9 /* WeatherFlowApi.h in Headers */,
+				64243875166D557C0093F7C9 /* ModelData.h in Headers */,
+				64243879166D558B0093F7C9 /* ModelDataSet.h in Headers */,
+				6419E10B166F794400B79024 /* WeatherFlowMapView.h in Headers */,
+				6419E121166F9C9000B79024 /* WeatherFlowMapViewController.h in Headers */,
+				6424385B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h in Headers */,
+				6419E115166F86CB00B79024 /* MKMapView+ZoomLevel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +237,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				64243844166D51EF0093F7C9 /* InfoPlist.strings in Resources */,
+				645052381675E0FA00C8ECFF /* mapnowind.png in Resources */,
+				645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */,
+				6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */,
+				6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */,
+				6450523C1675E0FA00C8ECFF /* mapwindarrow.png in Resources */,
+				6450523D1675E0FA00C8ECFF /* mapwindarrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +295,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6424385C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m in Sources */,
+				6424385E166D51FE0093F7C9 /* Profile.m in Sources */,
+				64243860166D51FE0093F7C9 /* Session.m in Sources */,
+				64243862166D51FE0093F7C9 /* Spot.m in Sources */,
+				64243864166D51FE0093F7C9 /* SpotSet.m in Sources */,
+				64243866166D51FE0093F7C9 /* Status.m in Sources */,
+				64243868166D51FE0093F7C9 /* User.m in Sources */,
+				6424386A166D51FE0093F7C9 /* WeatherFlowApi.m in Sources */,
+				64243876166D557C0093F7C9 /* ModelData.m in Sources */,
+				6424387A166D558B0093F7C9 /* ModelDataSet.m in Sources */,
+				6419E10C166F794400B79024 /* WeatherFlowMapView.m in Sources */,
+				6419E116166F86CB00B79024 /* MKMapView+ZoomLevel.m in Sources */,
+				6419E122166F9C9000B79024 /* WeatherFlowMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,10 +375,7 @@
 		64243849166D51EF0093F7C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -263,6 +388,7 @@
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
@@ -273,10 +399,7 @@
 		6424384A166D51EF0093F7C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -289,6 +412,7 @@
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
@@ -315,6 +439,7 @@
 				6424384A166D51EF0093F7C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
