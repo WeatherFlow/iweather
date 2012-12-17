@@ -383,13 +383,52 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
         return nil;
     }
     NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
-    ModelDataSet *modelDataSet = [[ModelDataSet alloc] initWithDictionary:responseDictionary];
+    ModelDataSet *modelDataSet = [[ModelDataSet alloc] initWithDictionary:responseDictionary andSpot:spot];
     return modelDataSet;
 }
 
 #pragma mark - Helper
++ (UIImage *) windArrowWithSize:(CGFloat) size {
+    CGFloat width = size;
+    CGFloat height = size;
+    // Prepare Points
+    CGFloat arrowWidth = 0.5 * size;
+    CGPoint buttonLeftPoint = CGPointMake((width - arrowWidth) / 2.0, height * 0.9);
+    CGPoint buttonRightPoint = CGPointMake(buttonLeftPoint.x + arrowWidth, height * 0.9);
+    CGPoint topArrowPoint = CGPointMake(width / 2.0, 0.0);
+    CGPoint buttomMiddlePoint = CGPointMake(width / 2.0, 0.7 * height);
+    
+    // Start Context
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // Prepare context parameters
+    CGContextSetLineWidth(context, 1);
+    CGContextSetStrokeColorWithColor(context, [UIColor darkGrayColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor lightGrayColor].CGColor);
+    
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(pathRef, NULL, topArrowPoint.x, topArrowPoint.y);
+    CGPathAddLineToPoint(pathRef, NULL, buttonLeftPoint.x, buttonLeftPoint.y);
+    CGPathAddLineToPoint(pathRef, NULL, buttomMiddlePoint.x, buttomMiddlePoint.y);
+    CGPathAddLineToPoint(pathRef, NULL, buttonRightPoint.x, buttonRightPoint.y);
+    CGPathAddLineToPoint(pathRef, NULL, topArrowPoint.x, topArrowPoint.y);
+    
+    CGPathCloseSubpath(pathRef);
+    
+    CGContextAddPath(context, pathRef);
+    CGContextFillPath(context);
+    
+    CGContextAddPath(context, pathRef);
+    CGContextStrokePath(context);
+    
+    UIImage *i = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return i;
+}
+
 + (UIImage *)windArrowWithText:(NSString *) text degrees:(CGFloat)degrees  {
-    UIImage *image = [UIImage imageNamed:@"mapwindarrow.png"];
+    UIImage *image = [self windArrowWithSize:30.0];
     CGFloat rads = (degrees / 360) * M_PI;
     float newSide = MAX([image size].width, [image size].height);
     // Start Context
@@ -407,6 +446,9 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
 }
 
 + (UIImage *) addText:(NSString *) text toImage:(UIImage *) image {
+    if (!text || text.length == 0) {
+        return image;
+    }
     UIFont *font = [UIFont boldSystemFontOfSize:14.0];
     CGSize constrainSize = CGSizeMake(30, image.size.height);
     CGSize stringSize = [text sizeWithFont:font

@@ -38,8 +38,6 @@
 		645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052331675E0FA00C8ECFF /* mapnowind@2x.png */; };
 		6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052341675E0FA00C8ECFF /* mapnowindinfo.png */; };
 		6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */; };
-		6450523C1675E0FA00C8ECFF /* mapwindarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052361675E0FA00C8ECFF /* mapwindarrow.png */; };
-		6450523D1675E0FA00C8ECFF /* mapwindarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,8 +75,6 @@
 		645052331675E0FA00C8ECFF /* mapnowind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowind@2x.png"; sourceTree = "<group>"; };
 		645052341675E0FA00C8ECFF /* mapnowindinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapnowindinfo.png; sourceTree = "<group>"; };
 		645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowindinfo@2x.png"; sourceTree = "<group>"; };
-		645052361675E0FA00C8ECFF /* mapwindarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapwindarrow.png; sourceTree = "<group>"; };
-		645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapwindarrow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +145,6 @@
 				645052331675E0FA00C8ECFF /* mapnowind@2x.png */,
 				645052341675E0FA00C8ECFF /* mapnowindinfo.png */,
 				645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */,
-				645052361675E0FA00C8ECFF /* mapwindarrow.png */,
-				645052371675E0FA00C8ECFF /* mapwindarrow@2x.png */,
 				64243841166D51EF0093F7C9 /* WeatherFlowApi-Info.plist */,
 				64243842166D51EF0093F7C9 /* InfoPlist.strings */,
 				64243845166D51EF0093F7C9 /* WeatherFlowApi-Prefix.pch */,
@@ -241,8 +235,6 @@
 				645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */,
 				6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */,
 				6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */,
-				6450523C1675E0FA00C8ECFF /* mapwindarrow.png in Resources */,
-				6450523D1675E0FA00C8ECFF /* mapwindarrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,6 +48,7 @@
 @property (readonly) NSString *model_run_time_utc;
 @property (readonly) NSString *model_time_local;
 @property (readonly) NSString *model_time_utc;
+@property (readonly) NSDate *modelTime;
 @property (readonly) NSString *precip_type;
 @property (readonly) CGFloat pres;
 @property (readonly) CGFloat prob_precip;

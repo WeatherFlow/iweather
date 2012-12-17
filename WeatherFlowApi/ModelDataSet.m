@@ -13,8 +13,13 @@
 @implementation ModelDataSet
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
+    return [self initWithDictionary:dictionary andSpot:nil];
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary andSpot:(Spot *)spot {
     self = [super init];
     if (self) {
+        spot__ = spot;
         model_name__ = [dictionary objectForKey:@"model_name"];
         units_wind__ = [dictionary objectForKey:@"units_wind"];
         units_temp__ = [dictionary objectForKey:@"units_temp"];
@@ -32,9 +37,19 @@
         }
         model_data__ = [NSArray arrayWithArray:array];
     }
-    return self;
+    return self;    
 }
 
+- (NSString *)description {
+    NSString *description = [NSString stringWithFormat:@"%@ %@ %@", self.model_name, self.status, self.spot];
+    return [NSString stringWithFormat:@"<%@: %p, %@>",
+            NSStringFromClass([self class]), self, description];
+}
+
+- (Spot *)spot {
+    return spot__;
+}
+    
 //===========================================================
 //  model_name
 //===========================================================

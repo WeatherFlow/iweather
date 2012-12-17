@@ -49,6 +49,7 @@
         favorite_lists__ = [dictionary objectForKey:@"favorite_lists"];
         fav_spot_id__ = [[dictionary objectForKey:@"fav_spot_id"] integerValue];
         wind_desc__ = [dictionary objectForKey:@"wind_desc"];
+        annotationView__ = nil;
     }
     return self;
 }
@@ -386,20 +387,44 @@ public void setWindDescriptionText(String unitsWind){
 
 #pragma mark - Annotation View
 - (MKAnnotationView *) annotationView {
-    MKAnnotationView *view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"SpotAnnotation"];
-    UIImage *windImage;
-    if (self.avg == kInvalidDouble) {
-        windImage = [UIImage imageNamed:@"mapnowindinfo.png"];
-    } else if (self.avg == 0.0) {
-        windImage = [UIImage imageNamed:@"mapnowind.png"];
-    } else {
-        windImage = [WeatherFlowApi windArrowWithText:[NSString stringWithFormat:@"%0.0f", self.avg] degrees:(CGFloat)self.dir];
+    if (!annotationView__) {
+        MKAnnotationView *view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"SpotAnnotation"];
+        UIImage *windImage;
+        if (self.avg == kInvalidDouble) {
+            windImage = [UIImage imageNamed:@"mapnowindinfo.png"];
+        } else if (self.avg == 0.0) {
+            windImage = [UIImage imageNamed:@"mapnowind.png"];
+        } else {
+            windImage = [WeatherFlowApi windArrowWithText:[NSString stringWithFormat:@"%0.0f", self.avg] degrees:(CGFloat)self.dir];
+        }
+        view.image = windImage;
+        
+        view.canShowCallout = TRUE;
+        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        view.rightCalloutAccessoryView = infoButton;
+        annotationView__ = view;
     }
-    view.image = windImage;
-    view.canShowCallout = TRUE;
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    view.rightCalloutAccessoryView = infoButton;
-    return view;
+    return annotationView__;
+}
+
+#pragma mark - Helper
+- (BOOL)isEqual:(id)object {
+    if (![object isKindOfClass:[Spot class]]) {
+        return FALSE;
+    }
+    Spot *spot = (Spot *) object;
+    return spot.spot_id == self.spot_id;
+}
+
+- (CLLocationDistance)distanceFrom:(CLLocation *)location {
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    
+    CLLocationDistance dist = [loc distanceFromLocation:location];
+    return dist;
+}
+
+- (ModelDataSet *)getModelData {
+    return [WeatherFlowApi getModelDataBySpot:self];
 }
 
 @end

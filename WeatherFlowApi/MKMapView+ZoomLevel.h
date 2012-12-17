@@ -17,5 +17,7 @@
 - (CLLocationCoordinate2D) minCoordinate;
 - (CLLocationCoordinate2D) maxCoordinate;
 
+- (double) zoomLevel;
+
 
 @end

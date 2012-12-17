@@ -117,6 +117,16 @@
 {
     return model_time_utc__;
 }
+
+- (NSDate *)modelTime {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ssZZZ"];
+    
+    NSDate *date = [[NSDate alloc] init];
+    date = [dateFormatter dateFromString:self.model_time_utc];
+    return date;
+}
 //===========================================================
 //  precip_type
 //===========================================================

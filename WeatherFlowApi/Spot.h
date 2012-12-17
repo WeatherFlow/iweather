@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@class Status;
+@class Status, ModelDataSet;
 
 @interface Spot : NSObject <MKAnnotation> {
     NSInteger spot_id__;
@@ -46,6 +46,7 @@
     NSString *favorite_lists__;
     NSInteger fav_spot_id__;
     NSString *wind_desc__;
+    MKAnnotationView *annotationView__;
 }
 
 - (id)initWithDictionary:(NSDictionary *) dictionary;
@@ -92,5 +93,10 @@
 
 #pragma mark - Annotation View
 - (MKAnnotationView *) annotationView;
+
+#pragma mark - Helper
+- (BOOL)isEqual:(id)object;
+- (CLLocationDistance) distanceFrom:(CLLocation *) location;
+- (ModelDataSet *) getModelData;
 
 @end

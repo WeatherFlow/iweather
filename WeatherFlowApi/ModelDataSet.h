@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class Status;
+@class Status, Spot;
 
 @interface ModelDataSet : NSObject {
     NSString *model_name__;
@@ -22,9 +22,11 @@
     NSString *max_wind_dir_txt__;
     NSString *max_wind_time_local__;
     NSString *model_color__;
+    Spot *spot__;
 }
 
 - (id)initWithDictionary:(NSDictionary *) dictionary;
+- (id)initWithDictionary:(NSDictionary *) dictionary andSpot:(Spot *) spot;
 
 @property (readonly) NSString *model_name;
 @property (readonly) NSString *units_wind;
@@ -36,5 +38,6 @@
 @property (readonly) NSString *max_wind_dir_txt;
 @property (readonly) NSString *max_wind_time_local;
 @property (readonly) NSString *model_color;
+@property (readonly) Spot *spot;
 
 @end

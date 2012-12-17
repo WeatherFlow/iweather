@@ -77,6 +77,7 @@ typedef enum {
 + (ModelDataSet *) getModelDataBySpot:(Spot *) spot;
 
 #pragma mark - Helper
++ (UIImage *) windArrowWithSize:(CGFloat) size;
 + (UIImage *)windArrowWithText:(NSString *) text degrees:(CGFloat)degrees;
 
 @end

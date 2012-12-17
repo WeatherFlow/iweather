@@ -11,9 +11,12 @@
 
 @class WeatherFlowMapView, Spot, SpotSet, CLLocation;
 
-@protocol WeatherFlowMapViewDelegate
+@protocol WeatherFlowMapViewDelegate <NSObject>
 
+@optional
 - (void) weatherFlowMapView:(WeatherFlowMapView *)weatherFlowMapView didSelectSpot:(Spot *) spot;
+- (void) weatherFlowMapView:(WeatherFlowMapView *)weatherFlowMapView spot:(Spot *) spot calloutAccessoryTapped:(UIControl *) control;
+- (void) weatherFlowMapView:(WeatherFlowMapView *)weatherFlowMapView didDeselectSpot:(Spot *) spot;
 
 @end
 
@@ -27,14 +30,15 @@
     SpotSet *visibleSpotSet__;
     NSOperationQueue *queue__;
     NSDate *lastRegionChange;
+    BOOL displayCallout__;
 }
 
 @property (readonly) MKMapView *mapView;
 @property BOOL showUserLocation;
 @property CLLocation *centerLocation;
-@property NSInteger zoomLevel;
 @property (readonly) SpotSet *visibleSpotSet;
 @property (weak) id<WeatherFlowMapViewDelegate> delegate;
-
+@property NSArray *selectedSpots;
+@property BOOL displayCallout;
 
 @end
