@@ -46,9 +46,6 @@ typedef enum {
 + (NSString *) apiKey;
 + (void) setApiKey:(NSString *) key;
 
-+ (NSInteger) distance;
-+ (void) setDistance:(NSInteger) distance;
-
 + (UnitDistance) unitDistance;
 + (void) setUnitDistance:(UnitDistance) unitDistance;
 
@@ -69,10 +66,11 @@ typedef enum {
 
 
 + (Session *) getToken;
-+ (SpotSet *) getSpotSetBySearch:(NSString *) search;
-+ (SpotSet *) getSpotSetByLocation:(CLLocation *) location;
++ (SpotSet *) getSpotSetBySearch:(NSString *) search distance:(NSInteger) distance;
++ (SpotSet *) getSpotSetByLocation:(CLLocation *) location distance:(NSInteger) distance;
 + (SpotSet *) getSpotSetByZoomLevel:(NSInteger) zoomLevel lat_min:(CGFloat) latMin lon_min:(CGFloat) lonMin lat_max:(CGFloat) latMax lon_max:(CGFloat) lonMax;
-+ (Spot *) getClosestSpotByLocation:(CLLocation *) location;
+
++ (Spot *) getClosestSpotByLocation:(CLLocation *) location distance:(CGFloat) distance;
 
 + (ModelDataSet *) getModelDataBySpot:(Spot *) spot;
 

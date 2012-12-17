@@ -40,17 +40,6 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     wfApiKey__ = key;
 }
 
-+ (NSInteger) distance {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:DistanceKey];
-    if (!value) {
-        return 15.0;
-    }
-    return value.integerValue;
-}
-+ (void) setDistance:(NSInteger) distance {
-    [[NSUserDefaults standardUserDefaults] setInteger:distance forKey:DistanceKey];
-}
-
 + (UnitDistance) unitDistance {
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:UnitDistanceKey];
     if (!value) {
@@ -231,6 +220,10 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return [self dictionaryWithParameter:@"spot_id" value:[NSString stringWithFormat:@"%i", spot_id]];
 }
 
++ (NSDictionary *) distanceDictionaryWithValue:(NSInteger) value {
+    return [self dictionaryWithParameter:@"search_dist" value:[NSString stringWithFormat:@"%i", value]];
+}
+
 + (NSArray *) locationArray:(CLLocation *) location {
     NSString *lat = [NSString stringWithFormat:@"%0.5f", location.coordinate.latitude];
     NSString *lon = [NSString stringWithFormat:@"%0.5f", location.coordinate.longitude];
@@ -258,8 +251,7 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
 + (NSArray *) searchArray {
     return [NSArray arrayWithObjects:
             [self dictionaryWithParameter:@"spot_types" value:@"1"],
-            [self dictionaryWithParameter:@"search_dist" value:[NSString stringWithFormat:@"%0.1d", self.distance]]
-            , nil];
+            nil];
 }
 
 #pragma mark - Weather Engine API
@@ -280,13 +272,13 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return session__;
 }
 
-+ (SpotSet *) getSpotSetBySearch:(NSString *) search {
++ (SpotSet *) getSpotSetBySearch:(NSString *) search distance:(NSInteger)distance {
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObject:[self searchDictionaryWithValue:search]];
     [parameters addObjectsFromArray:self.unitsArray];
     [parameters addObjectsFromArray:self.searchArray];
     [parameters addObject:self.formatDictionary];
-    
+    [parameters addObject:[self distanceDictionaryWithValue:distance]];
     NSString *urlString = [self urlForService:getSpotSetBySearchURL andParameters:parameters];
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -304,13 +296,14 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return spotSet;
 }
 
-+ (SpotSet *) getSpotSetByLocation:(CLLocation *) location {
++ (SpotSet *) getSpotSetByLocation:(CLLocation *) location distance:(NSInteger)distance {
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObjectsFromArray:[self locationArray:location]];
     [parameters addObjectsFromArray:self.unitsArray];
     [parameters addObjectsFromArray:self.searchArray];
+    [parameters addObject:[self distanceDictionaryWithValue:distance]];
     [parameters addObject:self.formatDictionary];
-    
+
     NSString *urlString = [self urlForService:getSpotSetByLatLonURL andParameters:parameters];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
@@ -353,8 +346,8 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return spotSet;
 }
 
-+ (Spot *) getClosestSpotByLocation:(CLLocation *) location {
-    SpotSet *set = [self getSpotSetByLocation:location];
++ (Spot *) getClosestSpotByLocation:(CLLocation *) location distance:(CGFloat)distance{
+    SpotSet *set = [self getSpotSetByLocation:location distance:distance];
     if (set.status.statusCode != 0) {
         return nil;
     }
