@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *StatusKey = @"status";
+#define StatusKey @"status"
 
-@interface Status : NSObject {
+@interface Status : NSObject <NSCoding> {
     NSNumber *statusCode__;
     NSString *statusMessage__;
 }

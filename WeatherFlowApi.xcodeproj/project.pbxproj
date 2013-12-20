@@ -38,7 +38,44 @@
 		645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052331675E0FA00C8ECFF /* mapnowind@2x.png */; };
 		6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052341675E0FA00C8ECFF /* mapnowindinfo.png */; };
 		6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */; };
+		648876561864909E00F4F6BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648876551864909E00F4F6BD /* Cocoa.framework */; };
+		648876601864909E00F4F6BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6488765E1864909E00F4F6BD /* InfoPlist.strings */; };
+		6488766B1864909E00F4F6BD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6488766A1864909E00F4F6BD /* XCTest.framework */; };
+		6488766C1864909E00F4F6BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648876551864909E00F4F6BD /* Cocoa.framework */; };
+		6488766F1864909E00F4F6BD /* WeatherFlowApiMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648876531864909E00F4F6BD /* WeatherFlowApiMac.framework */; };
+		648876751864909E00F4F6BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 648876731864909E00F4F6BD /* InfoPlist.strings */; };
+		6488767E186490DE00F4F6BD /* WeatherFlowApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424385A166D51FE0093F7C9 /* WeatherFlowApi.m */; };
+		6488767F186490DE00F4F6BD /* NSNull+WeatherFlowApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424384C166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.m */; };
+		64887680186490DE00F4F6BD /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6424384E166D51FE0093F7C9 /* Profile.m */; };
+		64887681186490DE00F4F6BD /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243850166D51FE0093F7C9 /* Session.m */; };
+		64887682186490DE00F4F6BD /* Spot.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243852166D51FE0093F7C9 /* Spot.m */; };
+		64887683186490DE00F4F6BD /* SpotSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243854166D51FE0093F7C9 /* SpotSet.m */; };
+		64887684186490DE00F4F6BD /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243856166D51FE0093F7C9 /* Status.m */; };
+		64887685186490DE00F4F6BD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243858166D51FE0093F7C9 /* User.m */; };
+		64887686186490DE00F4F6BD /* ModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243874166D557C0093F7C9 /* ModelData.m */; };
+		64887687186490DE00F4F6BD /* ModelDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 64243878166D558B0093F7C9 /* ModelDataSet.m */; };
+		648876881864910C00F4F6BD /* WeatherFlowApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243859166D51FE0093F7C9 /* WeatherFlowApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		648876891864910C00F4F6BD /* NSNull+WeatherFlowApiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h */; };
+		6488768A1864910C00F4F6BD /* Profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384D166D51FE0093F7C9 /* Profile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6488768B1864910C00F4F6BD /* Session.h in Headers */ = {isa = PBXBuildFile; fileRef = 6424384F166D51FE0093F7C9 /* Session.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6488768C1864910C00F4F6BD /* Spot.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243851166D51FE0093F7C9 /* Spot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6488768D1864910C00F4F6BD /* SpotSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243853166D51FE0093F7C9 /* SpotSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6488768E1864910C00F4F6BD /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243855166D51FE0093F7C9 /* Status.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6488768F1864910C00F4F6BD /* User.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243857166D51FE0093F7C9 /* User.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		648876901864910C00F4F6BD /* ModelData.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243873166D557C0093F7C9 /* ModelData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		648876911864910C00F4F6BD /* ModelDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 64243877166D558B0093F7C9 /* ModelDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		648876931864944700F4F6BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648876921864944700F4F6BD /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6488766D1864909E00F4F6BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64243830166D51EF0093F7C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 648876521864909E00F4F6BD;
+			remoteInfo = WeatherFlowApiMac;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6419E109166F794400B79024 /* WeatherFlowMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherFlowMapView.h; sourceTree = "<group>"; };
@@ -75,6 +112,22 @@
 		645052331675E0FA00C8ECFF /* mapnowind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowind@2x.png"; sourceTree = "<group>"; };
 		645052341675E0FA00C8ECFF /* mapnowindinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapnowindinfo.png; sourceTree = "<group>"; };
 		645052351675E0FA00C8ECFF /* mapnowindinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapnowindinfo@2x.png"; sourceTree = "<group>"; };
+		648876531864909E00F4F6BD /* WeatherFlowApiMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeatherFlowApiMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		648876551864909E00F4F6BD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		648876581864909E00F4F6BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		648876591864909E00F4F6BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6488765A1864909E00F4F6BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6488765D1864909E00F4F6BD /* WeatherFlowApiMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeatherFlowApiMac-Info.plist"; sourceTree = "<group>"; };
+		6488765F1864909E00F4F6BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		648876611864909E00F4F6BD /* WeatherFlowApiMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherFlowApiMac-Prefix.pch"; sourceTree = "<group>"; };
+		648876621864909E00F4F6BD /* WeatherFlowApiMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherFlowApiMac.h; sourceTree = "<group>"; };
+		648876631864909E00F4F6BD /* WeatherFlowApiMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherFlowApiMac.m; sourceTree = "<group>"; };
+		648876691864909E00F4F6BD /* WeatherFlowApiMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherFlowApiMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6488766A1864909E00F4F6BD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		648876721864909E00F4F6BD /* WeatherFlowApiMacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeatherFlowApiMacTests-Info.plist"; sourceTree = "<group>"; };
+		648876741864909E00F4F6BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		648876761864909E00F4F6BD /* WeatherFlowApiMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherFlowApiMacTests.m; sourceTree = "<group>"; };
+		648876921864944700F4F6BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +138,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6488764F1864909E00F4F6BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				648876931864944700F4F6BD /* CoreLocation.framework in Frameworks */,
+				648876561864909E00F4F6BD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648876661864909E00F4F6BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6488766C1864909E00F4F6BD /* Cocoa.framework in Frameworks */,
+				6488766B1864909E00F4F6BD /* XCTest.framework in Frameworks */,
+				6488766F1864909E00F4F6BD /* WeatherFlowApiMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				6424383F166D51EF0093F7C9 /* WeatherFlowApi */,
+				6488765B1864909E00F4F6BD /* WeatherFlowApiMac */,
+				648876701864909E00F4F6BD /* WeatherFlowApiMacTests */,
+				648876541864909E00F4F6BD /* Frameworks */,
 				6424383E166D51EF0093F7C9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				6424383D166D51EF0093F7C9 /* WeatherFlowApi.framework */,
+				648876531864909E00F4F6BD /* WeatherFlowApiMac.framework */,
+				648876691864909E00F4F6BD /* WeatherFlowApiMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +229,65 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		648876541864909E00F4F6BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				648876921864944700F4F6BD /* CoreLocation.framework */,
+				648876551864909E00F4F6BD /* Cocoa.framework */,
+				6488766A1864909E00F4F6BD /* XCTest.framework */,
+				648876571864909E00F4F6BD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		648876571864909E00F4F6BD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				648876581864909E00F4F6BD /* Foundation.framework */,
+				648876591864909E00F4F6BD /* CoreData.framework */,
+				6488765A1864909E00F4F6BD /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		6488765B1864909E00F4F6BD /* WeatherFlowApiMac */ = {
+			isa = PBXGroup;
+			children = (
+				648876621864909E00F4F6BD /* WeatherFlowApiMac.h */,
+				648876631864909E00F4F6BD /* WeatherFlowApiMac.m */,
+				6488765C1864909E00F4F6BD /* Supporting Files */,
+			);
+			path = WeatherFlowApiMac;
+			sourceTree = "<group>";
+		};
+		6488765C1864909E00F4F6BD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6488765D1864909E00F4F6BD /* WeatherFlowApiMac-Info.plist */,
+				6488765E1864909E00F4F6BD /* InfoPlist.strings */,
+				648876611864909E00F4F6BD /* WeatherFlowApiMac-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		648876701864909E00F4F6BD /* WeatherFlowApiMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				648876761864909E00F4F6BD /* WeatherFlowApiMacTests.m */,
+				648876711864909E00F4F6BD /* Supporting Files */,
+			);
+			path = WeatherFlowApiMacTests;
+			sourceTree = "<group>";
+		};
+		648876711864909E00F4F6BD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				648876721864909E00F4F6BD /* WeatherFlowApiMacTests-Info.plist */,
+				648876731864909E00F4F6BD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -172,6 +308,23 @@
 				6419E121166F9C9000B79024 /* WeatherFlowMapViewController.h in Headers */,
 				6424385B166D51FE0093F7C9 /* NSNull+WeatherFlowApiAdditions.h in Headers */,
 				6419E115166F86CB00B79024 /* MKMapView+ZoomLevel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648876501864909E00F4F6BD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				648876881864910C00F4F6BD /* WeatherFlowApi.h in Headers */,
+				6488768A1864910C00F4F6BD /* Profile.h in Headers */,
+				6488768B1864910C00F4F6BD /* Session.h in Headers */,
+				6488768C1864910C00F4F6BD /* Spot.h in Headers */,
+				6488768D1864910C00F4F6BD /* SpotSet.h in Headers */,
+				6488768E1864910C00F4F6BD /* Status.h in Headers */,
+				6488768F1864910C00F4F6BD /* User.h in Headers */,
+				648876901864910C00F4F6BD /* ModelData.h in Headers */,
+				648876911864910C00F4F6BD /* ModelDataSet.h in Headers */,
+				648876891864910C00F4F6BD /* NSNull+WeatherFlowApiAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +352,42 @@
 			productReference = 6424383D166D51EF0093F7C9 /* WeatherFlowApi.framework */;
 			productType = "com.apple.product-type.bundle";
 		};
+		648876521864909E00F4F6BD /* WeatherFlowApiMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6488767C1864909E00F4F6BD /* Build configuration list for PBXNativeTarget "WeatherFlowApiMac" */;
+			buildPhases = (
+				6488764E1864909E00F4F6BD /* Sources */,
+				6488764F1864909E00F4F6BD /* Frameworks */,
+				648876501864909E00F4F6BD /* Headers */,
+				648876511864909E00F4F6BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeatherFlowApiMac;
+			productName = WeatherFlowApiMac;
+			productReference = 648876531864909E00F4F6BD /* WeatherFlowApiMac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		648876681864909E00F4F6BD /* WeatherFlowApiMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6488767D1864909E00F4F6BD /* Build configuration list for PBXNativeTarget "WeatherFlowApiMacTests" */;
+			buildPhases = (
+				648876651864909E00F4F6BD /* Sources */,
+				648876661864909E00F4F6BD /* Frameworks */,
+				648876671864909E00F4F6BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6488766E1864909E00F4F6BD /* PBXTargetDependency */,
+			);
+			name = WeatherFlowApiMacTests;
+			productName = WeatherFlowApiMacTests;
+			productReference = 648876691864909E00F4F6BD /* WeatherFlowApiMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +396,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Pantelis Zirinis";
+				TargetAttributes = {
+					648876681864909E00F4F6BD = {
+						TestTargetID = 6424383C166D51EF0093F7C9;
+					};
+				};
 			};
 			buildConfigurationList = 64243833166D51EF0093F7C9 /* Build configuration list for PBXProject "WeatherFlowApi" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -221,6 +415,8 @@
 			projectRoot = "";
 			targets = (
 				6424383C166D51EF0093F7C9 /* WeatherFlowApi */,
+				648876521864909E00F4F6BD /* WeatherFlowApiMac */,
+				648876681864909E00F4F6BD /* WeatherFlowApiMacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +431,22 @@
 				645052391675E0FA00C8ECFF /* mapnowind@2x.png in Resources */,
 				6450523A1675E0FA00C8ECFF /* mapnowindinfo.png in Resources */,
 				6450523B1675E0FA00C8ECFF /* mapnowindinfo@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648876511864909E00F4F6BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				648876601864909E00F4F6BD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648876671864909E00F4F6BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				648876751864909E00F4F6BD /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,13 +515,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6488764E1864909E00F4F6BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6488767E186490DE00F4F6BD /* WeatherFlowApi.m in Sources */,
+				6488767F186490DE00F4F6BD /* NSNull+WeatherFlowApiAdditions.m in Sources */,
+				64887680186490DE00F4F6BD /* Profile.m in Sources */,
+				64887681186490DE00F4F6BD /* Session.m in Sources */,
+				64887682186490DE00F4F6BD /* Spot.m in Sources */,
+				64887683186490DE00F4F6BD /* SpotSet.m in Sources */,
+				64887684186490DE00F4F6BD /* Status.m in Sources */,
+				64887685186490DE00F4F6BD /* User.m in Sources */,
+				64887686186490DE00F4F6BD /* ModelData.m in Sources */,
+				64887687186490DE00F4F6BD /* ModelDataSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648876651864909E00F4F6BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6488766E1864909E00F4F6BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 648876521864909E00F4F6BD /* WeatherFlowApiMac */;
+			targetProxy = 6488766D1864909E00F4F6BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64243842166D51EF0093F7C9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				64243843166D51EF0093F7C9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6488765E1864909E00F4F6BD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6488765F1864909E00F4F6BD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		648876731864909E00F4F6BD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				648876741864909E00F4F6BD /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -367,7 +627,7 @@
 		64243849166D51EF0093F7C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -391,7 +651,7 @@
 		6424384A166D51EF0093F7C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
 				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -409,6 +669,144 @@
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		648876781864909E00F4F6BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeatherFlowApiMac/WeatherFlowApiMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "WeatherFlowApiMac/WeatherFlowApiMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		648876791864909E00F4F6BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeatherFlowApiMac/WeatherFlowApiMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "WeatherFlowApiMac/WeatherFlowApiMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		6488767A1864909E00F4F6BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeatherFlowApi.framework/Versions/A/WeatherFlowApi";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeatherFlowApiMac/WeatherFlowApiMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "WeatherFlowApiMacTests/WeatherFlowApiMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6488767B1864909E00F4F6BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeatherFlowApi.framework/Versions/A/WeatherFlowApi";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WeatherFlowApiMac/WeatherFlowApiMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "WeatherFlowApiMacTests/WeatherFlowApiMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -432,6 +830,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6488767C1864909E00F4F6BD /* Build configuration list for PBXNativeTarget "WeatherFlowApiMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				648876781864909E00F4F6BD /* Debug */,
+				648876791864909E00F4F6BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6488767D1864909E00F4F6BD /* Build configuration list for PBXNativeTarget "WeatherFlowApiMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6488767A1864909E00F4F6BD /* Debug */,
+				6488767B1864909E00F4F6BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

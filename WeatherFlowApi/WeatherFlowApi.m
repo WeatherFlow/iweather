@@ -9,24 +9,33 @@
 #import "WeatherFlowApi.h"
 #import <CoreLocation/CoreLocation.h>
 
-static NSString *api = @"http://api.weatherflow.com";
 static NSString *wfApiKey__;    // API Training API Key
-static NSString *format = @"json";
-static NSString *DistanceKey = @"WeatherFlowApiDistanceKey";
-static NSString *UnitDistanceKey = @"WeatherFlowApiUnitDistanceKey";
-static NSString *UnitWindKey = @"WeatherFlowApiUnitWindKey";
-static NSString *UnitTempKey = @"WeatherFlowApiUnitTempKey";
-static NSString *IncludeWindSppedOnArrowsKey = @"IncludeWindSppedOnArrowsKey";
 
-static NSString *NameKey = @"Name";
-static NSString *ValueKey = @"Value";
+#define api @"http://api.weatherflow.com"
+#define format @"json"
+#define DistanceKey @"WeatherFlowApiDistanceKey"
+#define UnitDistanceKey @"WeatherFlowApiUnitDistanceKey"
+#define UnitWindKey @"WeatherFlowApiUnitWindKey"
+#define UnitTempKey @"WeatherFlowApiUnitTempKey"
+#define IncludeWindSpeedOnArrowsKey @"IncludeWindSpeedOnArrowsKey"
+#define IncludeVirtualWeatherStationsKey @"IncludeVirtualWeatherStationsKey"
+
+#define NameKey @"Name"
+#define ValueKey @"Value"
 
 static Session *session__;
-static NSString *getTokenURL = @"/wxengine/rest/session/getToken";
-static NSString *getSpotSetBySearchURL = @"/wxengine/rest/spot/getSpotSetBySearch";
-static NSString *getSpotSetByLatLonURL = @"/wxengine/rest/spot/getSpotSetByLatLon";
-static NSString *getModelDataBySpotURL = @"/wxengine/rest/model/getModelDataBySpot";
-static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZoomLevel";
+#define getTokenURL @"/wxengine/rest/session/getToken"
+#define getSpotSetBySearchURL @"/wxengine/rest/spot/getSpotSetBySearch"
+#define getSpotSetByLatLonURL @"/wxengine/rest/spot/getSpotSetByLatLon"
+#define getModelDataBySpotURL @"/wxengine/rest/model/getModelDataBySpot"
+#define getSpotSetByZoomLevelURL @"/wxengine/rest/spot/getSpotSetByZoomLevel"
+
+static NSMutableArray *arrowCache__;
+#define kArrowFillColor @"kArrowFillColor"
+#define kArrowStrokeColor @"kArrowStrokeColor"
+#define kArrowImage @"kArrowImage"
+#define kArrowSize @"kArrowSize"
+
 
 @implementation WeatherFlowApi
 
@@ -40,43 +49,43 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     wfApiKey__ = key;
 }
 
-+ (UnitDistance) unitDistance {
++ (WFUnitDistance) unitDistance {
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:UnitDistanceKey];
     if (!value) {
-        return UnitDistanceKm;
+        return WFUnitDistanceKm;
     }
     return value.integerValue;
 }
 
-+ (void) setUnitDistance:(UnitDistance) unitDistance {
++ (void) setUnitDistance:(WFUnitDistance) unitDistance {
     [[NSUserDefaults standardUserDefaults] setInteger:unitDistance forKey:UnitDistanceKey];
 }
 
-+ (UnitTemp) unitTemp  {
++ (WFUnitTemp) unitTemp  {
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:UnitTempKey];
     if (!value) {
-        return UnitTempC;
+        return WFUnitTempC;
     }
     return value.integerValue;
 }
-+ (void) setUnitTemp:(UnitTemp) unitTemp {
++ (void) setUnitTemp:(WFUnitTemp) unitTemp {
     [[NSUserDefaults standardUserDefaults] setInteger:unitTemp forKey:UnitTempKey];
 }
 
-+ (UnitWind) unitWind  {
++ (WFUnitWind) unitWind  {
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:UnitWindKey];
     if (!value) {
-        return UnitWindKts;
+        return WFUnitWindKts;
     }
     return value.integerValue;
 }
 
-+ (void) setUnitWind:(UnitWind) unitWind {
++ (void) setUnitWind:(WFUnitWind) unitWind {
     [[NSUserDefaults standardUserDefaults] setInteger:unitWind forKey:UnitWindKey];
 }
 
 + (BOOL)includeWindSpeedOnArrows {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:IncludeWindSppedOnArrowsKey];
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:IncludeWindSpeedOnArrowsKey];
     if (!value) {
         return TRUE;
     }
@@ -84,7 +93,19 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
 }
 
 + (void)setIncludeWindSpeedOnArrows:(BOOL)include {
-    [[NSUserDefaults standardUserDefaults] setBool:include forKey:IncludeWindSppedOnArrowsKey];
+    [[NSUserDefaults standardUserDefaults] setBool:include forKey:IncludeWindSpeedOnArrowsKey];
+}
+
++ (BOOL)includeVirtualWeatherStations {
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:IncludeVirtualWeatherStationsKey];
+    if (!value) {
+        return FALSE;
+    }
+    return value.boolValue;
+}
+
++ (void)setIncludeVirtualWeatherStations:(BOOL)include {
+    [[NSUserDefaults standardUserDefaults] setBool:include forKey:IncludeVirtualWeatherStationsKey];
 }
 
 + (Session *) session {
@@ -94,12 +115,12 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return session__;
 }
 
-+ (NSString *) stringForUnitDistance:(UnitDistance) unit {
++ (NSString *) stringForUnitDistance:(WFUnitDistance) unit {
     switch (unit) {
-        case UnitDistanceKm:
+        case WFUnitDistanceKm:
             return @"Klm";
             break;
-        case UnitDistanceMi:
+        case WFUnitDistanceMi:
             return @"Miles";
             break;
         default:
@@ -108,18 +129,18 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (NSString *) stringForUnitWind:(UnitWind) unit {
++ (NSString *) stringForUnitWind:(WFUnitWind) unit {
     switch (unit) {
-        case UnitWindKph:
+        case WFUnitWindKph:
             return @"Kph";
             break;
-        case UnitWindKts:
+        case WFUnitWindKts:
             return @"Kts";
             break;
-        case UnitWindMph:
+        case WFUnitWindMph:
             return @"Mph";
             break;
-        case UnitWindMps:
+        case WFUnitWindMps:
             return @"Mps";
             break;
             
@@ -129,13 +150,13 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (NSString *) stringForUnitTemp:(UnitTemp) unit {
++ (NSString *) stringForUnitTemp:(WFUnitTemp) unit {
     switch (unit) {
-        case UnitTempF:
-            return @"F'\xC2\xB0'";
+        case WFUnitTempF:
+            return @"F\xC2\xB0";
             break;
-        case UnitTempC:
-            return @"C'\xC2\xB0'";
+        case WFUnitTempC:
+            return @"C\xC2\xB0";
             break;
         default:
             break;
@@ -143,12 +164,12 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (NSString *) paramForUnitDistance:(UnitDistance) unit {
++ (NSString *) paramForUnitDistance:(WFUnitDistance) unit {
     switch (unit) {
-        case UnitDistanceKm:
+        case WFUnitDistanceKm:
             return @"km";
             break;
-        case UnitDistanceMi:
+        case WFUnitDistanceMi:
             return @"mi";
             break;
         default:
@@ -157,18 +178,18 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (NSString *) paramForUnitWind:(UnitWind) unit {
++ (NSString *) paramForUnitWind:(WFUnitWind) unit {
     switch (unit) {
-        case UnitWindKph:
+        case WFUnitWindKph:
             return @"kph";
             break;
-        case UnitWindKts:
+        case WFUnitWindKts:
             return @"kts";
             break;
-        case UnitWindMph:
+        case WFUnitWindMph:
             return @"mph";
             break;
-        case UnitWindMps:
+        case WFUnitWindMps:
             return @"mps";
             break;
             
@@ -178,12 +199,12 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (NSString *) paramForUnitTemp:(UnitTemp) unit {
++ (NSString *) paramForUnitTemp:(WFUnitTemp) unit {
     switch (unit) {
-        case UnitTempF:
+        case WFUnitTempF:
             return @"f";
             break;
-        case UnitTempC:
+        case WFUnitTempC:
             return @"c";
             break;
         default:
@@ -224,9 +245,9 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return [self dictionaryWithParameter:@"search_dist" value:[NSString stringWithFormat:@"%i", value]];
 }
 
-+ (NSArray *) locationArray:(CLLocation *) location {
-    NSString *lat = [NSString stringWithFormat:@"%0.5f", location.coordinate.latitude];
-    NSString *lon = [NSString stringWithFormat:@"%0.5f", location.coordinate.longitude];
++ (NSArray *) locationArray:(CLLocationCoordinate2D) location {
+    NSString *lat = [NSString stringWithFormat:@"%0.5f", location.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%0.5f", location.longitude];
     return [NSArray arrayWithObjects:
             [self dictionaryWithParameter:@"lat" value:lat],
             [self dictionaryWithParameter:@"lon" value:lon],
@@ -249,9 +270,22 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
 }
 
 + (NSArray *) searchArray {
-    return [NSArray arrayWithObjects:
-            [self dictionaryWithParameter:@"spot_types" value:@"1"],
-            nil];
+    if (self.includeVirtualWeatherStations) {
+        return [NSArray arrayWithObjects:
+                [self dictionaryWithParameter:@"spot_types" value:@"1,100,101"],
+                nil];        
+    } else {
+        return [NSArray arrayWithObjects:
+                [self dictionaryWithParameter:@"spot_types" value:@"1"],
+                nil];
+    }
+}
+
++ (NSMutableArray *) arrowCache {
+    if (!arrowCache__) {
+        arrowCache__ = [[NSMutableArray alloc] init];
+    }
+    return arrowCache__;
 }
 
 #pragma mark - Weather Engine API
@@ -272,7 +306,7 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return session__;
 }
 
-+ (SpotSet *) getSpotSetBySearch:(NSString *) search distance:(NSInteger)distance {
++ (SpotSet *) getSpotSetBySearch:(NSString *) search distance:(NSInteger)distance error:(NSError **) error {
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObject:[self searchDictionaryWithValue:search]];
     [parameters addObjectsFromArray:self.unitsArray];
@@ -284,43 +318,46 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     NSURLResponse* response;
-    NSError* error = nil;
-    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:error];
     if (!result) {
         return nil;
     }
-    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:error];
     
     SpotSet *spotSet = [[SpotSet alloc] initWithDictionary:responseDictionary];
     
     return spotSet;
 }
 
-+ (SpotSet *) getSpotSetByLocation:(CLLocation *) location distance:(NSInteger)distance {
++ (SpotSet *) getSpotSetByLocationCoordinate:(CLLocationCoordinate2D)location distance:(NSInteger)distance error:(NSError **) error {
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObjectsFromArray:[self locationArray:location]];
     [parameters addObjectsFromArray:self.unitsArray];
     [parameters addObjectsFromArray:self.searchArray];
     [parameters addObject:[self distanceDictionaryWithValue:distance]];
     [parameters addObject:self.formatDictionary];
-
+    
     NSString *urlString = [self urlForService:getSpotSetByLatLonURL andParameters:parameters];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     NSURLResponse* response;
-    NSError* error = nil;
-    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:error];
     if (!result) {
         return nil;
     }
-    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:error];
     
     SpotSet *spotSet = [[SpotSet alloc] initWithDictionary:responseDictionary];
     
     return spotSet;
 }
 
-+ (SpotSet *) getSpotSetByZoomLevel:(NSInteger) zoomLevel lat_min:(CGFloat) latMin lon_min:(CGFloat) lonMin lat_max:(CGFloat) latMax lon_max:(CGFloat) lonMax {
+
++ (SpotSet *) getSpotSetByLocation:(CLLocationCoordinate2D) location distance:(NSInteger)distance error:(NSError **) error {
+    return [WeatherFlowApi getSpotSetByLocationCoordinate:location distance:distance error:error];
+}
+
++ (SpotSet *) getSpotSetByZoomLevel:(NSInteger) zoomLevel lat_min:(float) latMin lon_min:(float) lonMin lat_max:(float) latMax lon_max:(float) lonMax error:(NSError **) error {
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObject:[self dictionaryWithParameter:@"lat_min" value:[NSString stringWithFormat:@"%0.5f", latMin]]];
     [parameters addObject:[self dictionaryWithParameter:@"lon_min" value:[NSString stringWithFormat:@"%0.5f", lonMin]]];
@@ -328,26 +365,26 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     [parameters addObject:[self dictionaryWithParameter:@"lon_max" value:[NSString stringWithFormat:@"%0.5f", lonMax]]];
     [parameters addObject:[self dictionaryWithParameter:@"zoom" value:[NSString stringWithFormat:@"%i", zoomLevel]]];
     [parameters addObjectsFromArray:self.unitsArray];
+    [parameters addObjectsFromArray:self.searchArray];
     [parameters addObject:self.formatDictionary];
     
     NSString *urlString = [self urlForService:getSpotSetByZoomLevelURL andParameters:parameters];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     NSURLResponse* response;
-    NSError* error = nil;
-    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:error];
     if (!result) {
         return nil;
     }
-    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:error];
     
     SpotSet *spotSet = [[SpotSet alloc] initWithDictionary:responseDictionary];
     
     return spotSet;
 }
 
-+ (Spot *) getClosestSpotByLocation:(CLLocation *) location distance:(CGFloat)distance{
-    SpotSet *set = [self getSpotSetByLocation:location distance:distance];
++ (Spot *) getClosestSpotByLocation:(CLLocationCoordinate2D) location distance:(float)distance error:(NSError **) error {
+    SpotSet *set = [self getSpotSetByLocation:location distance:distance error:error];
     if (set.status.statusCode != 0) {
         return nil;
     }
@@ -359,7 +396,7 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     return nil;
 }
 
-+ (ModelDataSet *) getModelDataBySpot:(Spot *)spot {
++ (ModelDataSet *) getModelDataBySpot:(Spot *)spot  error:(NSError **) error{
     NSMutableArray *parameters = [[NSMutableArray alloc] init];
     [parameters addObject:[self spotIDDictionary:spot.spot_id]];
     [parameters addObjectsFromArray:self.unitsArray];
@@ -370,34 +407,68 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
     NSURLResponse* response;
-    NSError* error = nil;
-    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:error];
     if (!result) {
         return nil;
     }
-    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:error];
     ModelDataSet *modelDataSet = [[ModelDataSet alloc] initWithDictionary:responseDictionary andSpot:spot];
     return modelDataSet;
 }
 
++ (ModelDataSet *) getModelDataBySpotID:(NSInteger)spotID error:(NSError **) error {
+    NSMutableArray *parameters = [[NSMutableArray alloc] init];
+    [parameters addObject:[self spotIDDictionary:spotID]];
+    [parameters addObjectsFromArray:self.unitsArray];
+    [parameters addObject:self.formatDictionary];
+    
+    NSString *urlString = [self urlForService:getModelDataBySpotURL andParameters:parameters];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+    NSURLResponse* response;
+    NSData* result = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:error];
+    if (!result) {
+        return nil;
+    }
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:result options:0 error:error];
+    ModelDataSet *modelDataSet = [[ModelDataSet alloc] initWithDictionary:responseDictionary];
+    return modelDataSet;
+}
+
 #pragma mark - Helper
-+ (UIImage *) windArrowWithSize:(CGFloat) size {
-    CGFloat width = size;
-    CGFloat height = size;
+#if TARGET_OS_IPHONE
++ (UIImage *)windArrowWithSize:(float)size {
+    UIImage *arrow = [self windArrowWithSize: size fillColor:[UIColor grayColor] strokeColor:[UIColor grayColor]];
+    return arrow;
+}
+
++ (UIImage *) windArrowWithSize:(float) size fillColor:(UIColor *) fillColor strokeColor:(UIColor *) strokeColor{
+    //Check for ready image in cache
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@ AND %K == %@ AND %K == %f", kArrowFillColor, fillColor, kArrowStrokeColor, strokeColor, kArrowSize, size];
+    NSArray *cache = [self.arrowCache filteredArrayUsingPredicate:predicate];
+    if (cache.count != 0) {
+        UIImage *image = [[cache objectAtIndex:0] objectForKey:kArrowImage];
+        return [image copy];
+    }
+    NSLog(@"No cahce for size %f", size);
+    // Get a bigger image for quality reasons
+    float width = size;
+    float height = size;
     // Prepare Points
-    CGFloat arrowWidth = 0.5 * size;
+    float arrowWidth = 0.5 * width;
     CGPoint buttonLeftPoint = CGPointMake((width - arrowWidth) / 2.0, height * 0.9);
     CGPoint buttonRightPoint = CGPointMake(buttonLeftPoint.x + arrowWidth, height * 0.9);
     CGPoint topArrowPoint = CGPointMake(width / 2.0, 0.0);
     CGPoint buttomMiddlePoint = CGPointMake(width / 2.0, 0.7 * height);
     
     // Start Context
-    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), NO, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     // Prepare context parameters
     CGContextSetLineWidth(context, 1);
-    CGContextSetStrokeColorWithColor(context, [UIColor darkGrayColor].CGColor);
-    CGContextSetFillColorWithColor(context, [UIColor lightGrayColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, strokeColor.CGColor);
+    CGContextSetFillColorWithColor(context, fillColor.CGColor);
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     
@@ -417,24 +488,45 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     
     UIImage *i = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return i;
+    // Resize image.
+    [self.arrowCache addObject:[NSDictionary dictionaryWithObjectsAndKeys:fillColor, kArrowFillColor, strokeColor, kArrowStrokeColor, [NSNumber numberWithFloat:size], kArrowSize, [i copy], kArrowImage, nil]];
+    return i;//[self resizeImage:i to:CGSizeMake(size, size)];
 }
 
-+ (UIImage *)windArrowWithText:(NSString *) text degrees:(CGFloat)degrees  {
-    UIImage *image = [self windArrowWithSize:30.0];
-    CGFloat rads = (degrees / 360) * M_PI;
-    float newSide = MAX([image size].width, [image size].height);
-    // Start Context
-    CGSize size = CGSizeMake(newSide, newSide);
-    UIGraphicsBeginImageContext(size);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(ctx, newSide/2, newSide/2);
-    CGContextRotateCTM(ctx, rads);
-    CGContextDrawImage(UIGraphicsGetCurrentContext(),CGRectMake(-[image size].width/2,-[image size].height/2,size.width, size.height),image.CGImage);
-     // Create image
-    UIImage *i = UIGraphicsGetImageFromCurrentImageContext();
++ (UIImage *) resizeImage:(UIImage *) image to:(CGSize) size {
+    if (CGSizeEqualToSize(image.size, size)) {
+        return image;
+    }
+    NSLog(@"Resize");
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(size.width, size.height), NO, 0.0);
+    // Set the quality level to use when rescaling
+    //CGContextRef context = UIGraphicsGetCurrentContext();
+    //CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    return newImage;
+}
+
++ (UIImage *) windArrowWithSize:(float) size degrees:(float) degrees fillColor:(UIColor *) fillColor strokeColor:(UIColor *) strokeColor text:(NSString *) text {
+    UIImage *image = [self windArrowWithSize:size fillColor:fillColor strokeColor:strokeColor];
+    UIImage *i = [self rotatedImage:image degrees:degrees];
+    // Resize
+    //i = [self resizeImage:i to:CGSizeMake(size, size)];
     // Add Text
+    return [self addText:text toImage:i];
+}
++ (UIImage *)windArrowWithText:(NSString *) text degrees:(float)degrees  {
+    UIImage *image = [self windArrowWithSize:30.0];
+    UIImage *i = [self rotatedImage:image degrees:degrees];
+    // Add Text
+    return [self addText:text toImage:i];
+}
+
++ (UIImage *)waveArrowWithText:(NSString *) text degrees:(float)degrees  {
+    UIImage *image = [self windArrowWithSize:30 fillColor:[UIColor blueColor] strokeColor:[UIColor blueColor]];
+    // Create image
+    UIImage *i = [self rotatedImage:image degrees:degrees];
     return [self addText:text toImage:i];
 }
 
@@ -462,5 +554,24 @@ static NSString *getSpotSetByZoomLevelURL = @"/wxengine/rest/spot/getSpotSetByZo
     UIGraphicsEndImageContext();
     return i;    
 }
+
++ (UIImage *) rotatedImage:(UIImage *) image degrees:(float) degrees {
+    // We add 180 to callibrate the arrow and then conver to radians.
+    float rads = degrees * (M_PI / 180.0);
+    float newSide = MAX([image size].width, [image size].height);
+    // Start Context
+    CGSize size = CGSizeMake(newSide, newSide);
+    UIGraphicsBeginImageContext(size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(ctx, newSide/2, newSide/2);
+    CGContextRotateCTM(ctx, rads);
+    CGContextDrawImage(UIGraphicsGetCurrentContext(),CGRectMake(-[image size].width/2,-[image size].height/2,size.width, size.height),image.CGImage);
+    // Create image
+    UIImage *i = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return i;
+}
+
+#endif
 
 @end

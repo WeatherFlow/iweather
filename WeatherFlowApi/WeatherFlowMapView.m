@@ -22,15 +22,40 @@
 
 @implementation WeatherFlowMapView
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.mapView];
-        self.mapView.delegate = self;
-        self.reloadData = TRUE;
+        [self baseInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
+- (void) baseInit {
+    self.mapView.delegate = self;
+    self.reloadData = TRUE;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.mapView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
 #pragma mark - Setter and Getter
@@ -40,6 +65,7 @@
         mapView__.mapType = MKMapTypeStandard;
         [mapView__ setCenterCoordinate:self.centerLocation.coordinate zoomLevel:DefaultZoomLevel animated:NO];
         mapView__.showsUserLocation = self.showUserLocation;
+        [self addSubview:mapView__];
     }
     return mapView__;
 }
@@ -84,7 +110,7 @@
         [self.queue cancelAllOperations];
         NSBlockOperation *theOp = [NSBlockOperation blockOperationWithBlock:^{
             NSLog(@"%0.1f", self.mapView.zoomLevel);
-            SpotSet *spotSet = [WeatherFlowApi getSpotSetByZoomLevel:self.mapView.zoomLevel lat_min:min.latitude lon_min:min.longitude lat_max:max.latitude lon_max:max.longitude];
+            SpotSet *spotSet = [WeatherFlowApi getSpotSetByZoomLevel:self.mapView.zoomLevel lat_min:min.latitude lon_min:min.longitude lat_max:max.latitude lon_max:max.longitude error:nil];
             self.reloadData = FALSE;
             [self performSelectorOnMainThread:@selector(setVisibleSpotSet:) withObject:spotSet waitUntilDone:NO];
         }];
@@ -161,8 +187,11 @@
         return;
     }
     displayCallout__ = displayCallout;
-    for (MKAnnotationView *view in self.mapView.annotations) {
-        [view setCanShowCallout:displayCallout];
+    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+        if ([annotation isKindOfClass:[Spot class]]) {
+            Spot *spot = annotation;
+            [spot.annotationView setCanShowCallout:self.displayCallout];
+        }
     }
 }
 

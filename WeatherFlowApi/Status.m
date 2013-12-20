@@ -29,6 +29,26 @@ static NSString *StatusMessageKey = @"status_message";
             NSStringFromClass([self class]), self, description];
 }
 
+//===========================================================
+//  Keyed Archiving
+//
+//===========================================================
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeInteger:self.statusCode forKey:@"statusCode"];
+    [encoder encodeObject:self.statusMessage forKey:@"statusMessage"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        statusCode__ = [NSNumber numberWithInteger:[decoder decodeIntegerForKey:@"statusCode"]];
+        statusMessage__ = [decoder decodeObjectForKey:@"statusMessage"];
+    }
+    return self;
+}
+
 - (NSInteger)statusCode {
     if (!statusCode__) {
         return -1;

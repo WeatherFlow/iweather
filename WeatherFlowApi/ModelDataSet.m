@@ -95,7 +95,7 @@
 //===========================================================
 //  max_wind
 //===========================================================
-- (CGFloat)max_wind
+- (float)max_wind
 {
     return max_wind__;
 }
@@ -119,6 +119,42 @@
 - (NSString *)model_color
 {
     return model_color__;
+}
+
+//===========================================================
+//  Keyed Archiving
+//
+//===========================================================
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.units_wind forKey:@"units_wind"];
+    [encoder encodeObject:self.units_temp forKey:@"units_temp"];
+    [encoder encodeObject:self.units_distance forKey:@"units_distance"];
+    [encoder encodeObject:self.model_data forKey:@"model_data"];
+    [encoder encodeObject:self.status forKey:@"status"];
+    [encoder encodeFloat:self.max_wind forKey:@"max_wind"];
+    [encoder encodeObject:self.max_wind_dir_txt forKey:@"max_wind_dir_txt"];
+    [encoder encodeObject:self.max_wind_time_local forKey:@"max_wind_time_local"];
+    [encoder encodeObject:self.model_color forKey:@"model_color"];
+    [encoder encodeObject:self.spot forKey:@"spot"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        units_wind__ = [decoder decodeObjectForKey:@"units_wind"];
+        units_temp__ = [decoder decodeObjectForKey:@"units_temp"];
+        units_distance__ = [decoder decodeObjectForKey:@"units_distance"];
+        model_data__ = [decoder decodeObjectForKey:@"model_data"];
+        status__ = [decoder decodeObjectForKey:@"status"];
+        max_wind__ = [decoder decodeFloatForKey:@"max_wind"];
+        max_wind_dir_txt__ = [decoder decodeObjectForKey:@"max_wind_dir_txt"];
+        max_wind_time_local__ = [decoder decodeObjectForKey:@"max_wind_time_local"];
+        model_color__ = [decoder decodeObjectForKey:@"model_color"];
+        spot__ = [decoder decodeObjectForKey:@"spot"];
+    }
+    return self;
 }
 
 @end

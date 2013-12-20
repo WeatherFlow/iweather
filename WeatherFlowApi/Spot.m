@@ -54,6 +54,88 @@
     return self;
 }
 
+//===========================================================
+//  Keyed Archiving
+//
+//===========================================================
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeInteger:self.spot_id forKey:@"spot_id"];
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeInteger:self.type forKey:@"type"];
+    [encoder encodeDouble:self.distance forKey:@"distance"];
+    [encoder encodeDouble:self.lat forKey:@"lat"];
+    [encoder encodeDouble:self.lon forKey:@"lon"];
+    [encoder encodeInteger:self.provider forKey:@"provider"];
+    [encoder encodeInteger:self.region_id forKey:@"region_id"];
+    [encoder encodeBool:self.is_favorite forKey:@"is_favorite"];
+    [encoder encodeBool:self.wind_alert_exists forKey:@"wind_alert_exists"];
+    [encoder encodeBool:self.wind_alert_active forKey:@"wind_alert_active"];
+    [encoder encodeBool:self.upgrade_available forKey:@"upgrade_available"];
+    [encoder encodeObject:self.timestamp forKey:@"timestamp"];
+    [encoder encodeDouble:self.avg forKey:@"avg"];
+    [encoder encodeDouble:self.lull forKey:@"lull"];
+    [encoder encodeDouble:self.gust forKey:@"gust"];
+    [encoder encodeInteger:self.dir forKey:@"dir"];
+    [encoder encodeObject:self.dir_text forKey:@"dir_text"];
+    [encoder encodeDouble:self.atemp forKey:@"atemp"];
+    [encoder encodeDouble:self.wtemp forKey:@"wtemp"];
+    [encoder encodeObject:self.status forKey:@"status"];
+    [encoder encodeObject:self.spot_message forKey:@"spot_message"];
+    [encoder encodeObject:self.source_message forKey:@"source_message"];
+    [encoder encodeDouble:self.rank forKey:@"rank"];
+    [encoder encodeInteger:self.fav_sort_order forKey:@"fav_sort_order"];
+    [encoder encodeDouble:self.wave_height forKey:@"wave_height"];
+    [encoder encodeDouble:self.wave_period forKey:@"wave_period"];
+    [encoder encodeObject:self.current_time_local forKey:@"current_time_local"];
+    [encoder encodeDouble:self.pres forKey:@"pres"];
+    [encoder encodeObject:self.timezone forKey:@"timezone"];
+    [encoder encodeObject:self.favorite_lists forKey:@"favorite_lists"];
+    [encoder encodeInteger:self.fav_spot_id forKey:@"fav_spot_id"];
+    [encoder encodeObject:self.wind_desc forKey:@"wind_desc"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        spot_id__ = [decoder decodeIntegerForKey:@"spot_id"];
+        name__ = [decoder decodeObjectForKey:@"name"];
+        type__ = [decoder decodeIntegerForKey:@"type"];
+        distance__ = [decoder decodeDoubleForKey:@"distance"];
+        lat__ = [decoder decodeDoubleForKey:@"lat"];
+        lon__ = [decoder decodeDoubleForKey:@"lon"];
+        provider__ = [decoder decodeIntegerForKey:@"provider"];
+        region_id__ = [decoder decodeIntegerForKey:@"region_id"];
+        is_favorite__ = [decoder decodeBoolForKey:@"is_favorite"];
+        wind_alert_exists__ = [decoder decodeBoolForKey:@"wind_alert_exists"];
+        wind_alert_active__ = [decoder decodeBoolForKey:@"wind_alert_active"];
+        upgrade_available__ = [decoder decodeBoolForKey:@"upgrade_available"];
+        timestamp__ = [decoder decodeObjectForKey:@"timestamp"];
+        avg__ = [decoder decodeDoubleForKey:@"avg"];
+        lull__ = [decoder decodeDoubleForKey:@"lull"];
+        gust__ = [decoder decodeDoubleForKey:@"gust"];
+        dir__ = [decoder decodeIntegerForKey:@"dir"];
+        dir_text__ = [decoder decodeObjectForKey:@"dir_text"];
+        atemp__ = [decoder decodeDoubleForKey:@"atemp"];
+        wtemp__ = [decoder decodeDoubleForKey:@"wtemp"];
+        status__ = [decoder decodeObjectForKey:@"status"];
+        spot_message__ = [decoder decodeObjectForKey:@"spot_message"];
+        source_message__ = [decoder decodeObjectForKey:@"source_message"];
+        rank__ = [decoder decodeDoubleForKey:@"rank"];
+        fav_sort_order__ = [decoder decodeIntegerForKey:@"fav_sort_order"];
+        wave_height__ = [decoder decodeDoubleForKey:@"wave_height"];
+        wave_period__ = [decoder decodeDoubleForKey:@"wave_period"];
+        current_time_local__ = [decoder decodeObjectForKey:@"current_time_local"];
+        pres__ = [decoder decodeDoubleForKey:@"pres"];
+        timezone__ = [decoder decodeObjectForKey:@"timezone"];
+        favorite_lists__ = [decoder decodeObjectForKey:@"favorite_lists"];
+        fav_spot_id__ = [decoder decodeIntegerForKey:@"fav_spot_id"];
+        wind_desc__ = [decoder decodeObjectForKey:@"wind_desc"];
+    }
+    return self;
+}
+
 - (NSString *)description {
     NSString *description = [NSString stringWithFormat:@"%i %@ %0.4f %0.4f", self.spot_id, self.name, self.lat, self.lon];
     return [NSString stringWithFormat:@"<%@: %p, %@>",
@@ -386,18 +468,40 @@ public void setWindDescriptionText(String unitsWind){
 }
 
 #pragma mark - Annotation View
+
+#if TARGET_OS_IPHONE
 - (MKAnnotationView *) annotationView {
     if (!annotationView__) {
         MKAnnotationView *view = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"SpotAnnotation"];
         UIImage *windImage;
+        NSString *windText = nil;
         if (self.avg == kInvalidDouble) {
             windImage = [UIImage imageNamed:@"mapnowindinfo.png"];
         } else if (self.avg == 0.0) {
             windImage = [UIImage imageNamed:@"mapnowind.png"];
         } else {
-            windImage = [WeatherFlowApi windArrowWithText:[NSString stringWithFormat:@"%0.0f", self.avg] degrees:(CGFloat)self.dir];
+            windImage = [WeatherFlowApi windArrowWithSize:100.0 degrees:(float)self.dir fillColor:[UIColor grayColor] strokeColor:[UIColor grayColor] text:@""];
+            windText = [NSString stringWithFormat:@"%0.0f", self.avg];
         }
-        view.image = windImage;
+        UIImageView *windImageView = [[UIImageView alloc] initWithImage:windImage];
+        windImageView.frame = CGRectMake(0, 0, 30, 30);
+        [view addSubview:windImageView];
+        CGRect rect = view.frame;
+        rect.size = windImageView.frame.size;
+        if (windText) {
+            UILabel *label = [[UILabel alloc] init];
+            label.text = windText;
+            label.textColor = [UIColor grayColor];
+            label.backgroundColor = [UIColor clearColor];
+            [label sizeToFit];
+            CGRect labelFrame = label.frame;
+            labelFrame.origin.x = 30;
+            label.frame = labelFrame;
+            rect.size.width += labelFrame.size.width;
+            [view addSubview:label];
+        }
+        view.frame = rect;
+//        view.image = windImage;
         
         view.canShowCallout = TRUE;
         UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -406,6 +510,7 @@ public void setWindDescriptionText(String unitsWind){
     }
     return annotationView__;
 }
+#endif
 
 #pragma mark - Helper
 - (BOOL)isEqual:(id)object {
@@ -424,7 +529,11 @@ public void setWindDescriptionText(String unitsWind){
 }
 
 - (ModelDataSet *)getModelData {
-    return [WeatherFlowApi getModelDataBySpot:self];
+    return [WeatherFlowApi getModelDataBySpot:self error:nil];
+}
+
+- (ModelDataSet *)getModelDataError:(NSError **) error {
+    return [WeatherFlowApi getModelDataBySpot:self error:error];
 }
 
 @end

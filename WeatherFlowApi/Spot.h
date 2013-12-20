@@ -92,11 +92,14 @@
 - (NSString *)subtitle;
 
 #pragma mark - Annotation View
+#if TARGET_OS_IPHONE
 - (MKAnnotationView *) annotationView;
+#endif
 
 #pragma mark - Helper
 - (BOOL)isEqual:(id)object;
 - (CLLocationDistance) distanceFrom:(CLLocation *) location;
 - (ModelDataSet *) getModelData;
+- (ModelDataSet *)getModelDataError:(NSError **) error;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *UserKey = @"wf_user";
+#define UserKey @"wf_user"
 
 @interface User : NSObject {
     NSString *wf_username__;

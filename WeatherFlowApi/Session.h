@@ -10,7 +10,7 @@
 
 @class User, Status;
 
-static NSString *TokenKey = @"wf_token";
+#define TokenKey @"wf_token"
 
 @interface Session : NSObject {
     Status *status__;
